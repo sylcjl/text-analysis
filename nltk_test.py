@@ -33,7 +33,7 @@ testlist = [
 
 for sent, seg in testlist:
     # 輸出該句的情緒
-    print(SnowNLP(sent).sentiments)
+    print u'這句話的情緒分數為：', SnowNLP(sent).sentiments
 
     # 修改前
     print(u'/'.join(jieba.cut(sent, HMM=False)))
@@ -46,3 +46,11 @@ for sent, seg in testlist:
     print(u'/'.join(jieba.cut(sent, HMM=False)))
 
     print(u"-"*40)
+
+
+
+
+
+
+
+
