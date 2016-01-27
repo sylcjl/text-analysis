@@ -9,6 +9,7 @@ import nltk
 import jieba
 import jieba.analyse
 from snownlp import SnowNLP
+from snownlp import seg
 
 jieba.set_dictionary("dict.txt.big.txt")
 jieba.load_userdict("user_dict.txt")
@@ -23,7 +24,6 @@ jieba.load_userdict("user_dict.txt")
 
 # seg_list = jieba.cut_for_search(articleContent, HMM=True)
 
-
 ## test frequency tune
 testlist = [
 (u'今天天气不错', (u'今天', u'天气')),
@@ -32,9 +32,17 @@ testlist = [
 ]
 
 for sent, seg in testlist:
+    # 輸出該句的情緒
     print(SnowNLP(sent).sentiments)
+
+    # 修改前
     print(u'/'.join(jieba.cut(sent, HMM=False)))
+
+    # 修改中
     word = ''.join(seg)
     print(u'%s Before: %s, After: %s' % (word, jieba.get_FREQ(word), jieba.suggest_freq(seg, True)))
+
+    # 修改後
     print(u'/'.join(jieba.cut(sent, HMM=False)))
+
     print(u"-"*40)
